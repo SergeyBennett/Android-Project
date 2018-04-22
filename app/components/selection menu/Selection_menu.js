@@ -5,18 +5,9 @@ import {styles} from "../../styles/styles";
 import Toolbar from "../notes/Toolbar";
 import OpenNotesButton from "../buttons/OpenNotesButton"
 import AllNotes from "../notes/view_allNotes";
-import * as Platform from "react-native";
-import * as Platform from "react-native/Libraries/Utilities/Platform.android";
 
 
 export default class Selection_menu extends Component {
-
-
-    constructor(props) {
-        super(props);
-        this.backButtonListener = null;
-        this.currentRouteName = 'Main';
-    }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
@@ -31,15 +22,6 @@ export default class Selection_menu extends Component {
             return false
         }
         return true
-        if (Platform.OS === 'android') {
-            this.backButtonListener = BackHandler.addEventListener('hardwareBackPress', () => {
-                if (this.currentRouteName !== 'Main') {
-                    return false;
-                }
-
-                return true;
-            });
-        }
     }
 
 
