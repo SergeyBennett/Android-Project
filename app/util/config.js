@@ -1,4 +1,4 @@
-import { typography, color } from './paper_styles'
+import { typography, color } from '../styles/paper_styles'
 
 export const COLOR = color
 export const TYPO = typography

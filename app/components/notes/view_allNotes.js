@@ -5,7 +5,7 @@ import {
   StatusBar,
   TextInput,
   Alert,
-  BackAndroid,
+  BackHandler,
   ListView
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -28,11 +28,11 @@ class AllNotes extends Component {
   }
 
   componentDidMount() {
-    BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton)
+      BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('hardwareBackPress', this._handleBackButton)
+      BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton)
   }
 
   _handleBackButton() {
@@ -50,7 +50,7 @@ class AllNotes extends Component {
           barStyle="light-content"
           animated={true}
         />
-        <Toolbar title="Asprov Notes" color={getColor('paperBlue')}/>
+        <Toolbar title="Notes" color={getColor('paperBlue')}/>
         { this.renderList() }
 
         <AddNoteButton onBtnPress={this.addNewNote.bind(this)}/>

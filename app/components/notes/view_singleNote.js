@@ -3,7 +3,7 @@ import {
   Text,
   View,
   TextInput,
-  BackAndroid,
+  BackHandler,
   StatusBar
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -30,11 +30,11 @@ class SingleNote extends Component {
   }
 
   componentDidMount() {
-    BackAndroid.addEventListener('backPressedSingleNote', this._handleBackButton)
+      BackHandler.addEventListener('backPressedSingleNote', this._handleBackButton)
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('backPressedSingleNote', this._handleBackButton)
+      BackHandler.removeEventListener('backPressedSingleNote', this._handleBackButton)
   }
 
   _handleBackButton() {

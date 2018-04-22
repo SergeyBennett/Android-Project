@@ -10,7 +10,7 @@ export const styles = {
     marginBottom: 56
   },
   emptyList: {
-    fontFamily: 'Lato-Bold',
+    //fontFamily: 'Lato-Bold',
     fontSize: 16
   },
 
@@ -27,7 +27,7 @@ export const styles = {
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 0,
-    fontFamily: 'Lato-Regular',
+    //fontFamily: 'Lato-Regular',
     fontSize: 20
   },
   inputDescriptionStyle: {
@@ -35,7 +35,7 @@ export const styles = {
     paddingLeft: 20,
     paddingRight: 20,
     marginBottom: 60,
-    fontFamily: 'Lato-Regular',
+    //fontFamily: 'Lato-Regular',
     fontSize: 16,
     textAlignVertical: 'top'
   }

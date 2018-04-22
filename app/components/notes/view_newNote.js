@@ -3,7 +3,7 @@ import {
   Text,
   View,
   TextInput,
-  BackAndroid,
+  BackHandler,
   StatusBar
 } from 'react-native'
 import { connect } from 'react-redux'
@@ -30,11 +30,11 @@ class NewNote extends Component {
   }
 
   componentDidMount() {
-    BackAndroid.addEventListener('backPressed', this._handleBackButton)
+      BackHandler.addEventListener('backPressed', this._handleBackButton)
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('backPressed', this._handleBackButton)
+      BackHandler.removeEventListener('backPressed', this._handleBackButton)
   }
 
   _handleBackButton() {

@@ -4,14 +4,14 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import * as storage from 'redux-storage'
 import {
-    Text,
-    View,
-    Navigator,
-    BackAndroid,
     AppRegistry
 } from 'react-native'
 
+import NavigationExperimental from 'react-native-deprecated-custom-components';
+import { StackNavigator } from 'react-navigation';
+
 import AllNotes from './app/components/notes/view_allNotes'
+
 
 import ApplicationStore from './app/reducers'
 const reducer = storage.reducer(ApplicationStore);
@@ -30,43 +30,24 @@ const routes = [
     { component: AllNotes }
 ]
 
-export default class App extends React.Component {
+export default class App extends Component {
     componentDidMount() {
     }
 
     render() {
         return (
             <Provider store={store}>
-                <Navigator
+                <NavigationExperimental.Navigator
                     style={{flex: 1}}
                     ref='nav'
                     initialRouteStack={routes}
                     renderScene={this.renderScene}
-                    configureScene={this.configureScene}
                 />
             </Provider>
         )
     }renderScene(route, navigator) {
         return <route.component navigator={navigator} {...route.passProps}/>
     }
-    configureScene(route, routeStack) {
-        if (route.type == 'addingNote') {
-            return Navigator.SceneConfigs.FloatFromBottomAndroid
-        }
-        if (route.type == 'editingNote'){
-            return Navigator.SceneConfigs.FloatFromBottomAndroid
-        }
-        return Navigator.SceneConfigs.FloatFromRight
-    }
 }
 
-AppRegistry.registerComponent('AsprovNotes', () => AsprovNotes)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent('Notes', () => App)
