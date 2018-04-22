@@ -17,6 +17,7 @@ import ApplicationStore from './app/reducers'
 const reducer = storage.reducer(ApplicationStore);
 
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage'
+import Selection_menu from "./app/components/selection menu/Selection_menu";
 const engine = createEngine('notes-app-store')
 
 const middleware = storage.createMiddleware(engine)
@@ -27,7 +28,7 @@ const load = storage.createLoader(engine)
 load(store)
 
 const routes = [
-    { component: AllNotes }
+    { component: Selection_menu }
 ]
 
 export default class App extends Component {
@@ -50,4 +51,4 @@ export default class App extends Component {
     }
 }
 
-AppRegistry.registerComponent('Notes', () => App)
+AppRegistry.registerComponent('App', () => App)

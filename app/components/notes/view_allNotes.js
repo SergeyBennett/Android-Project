@@ -18,7 +18,6 @@ import AddNoteButton from '../buttons/AddNoteButton'
 import { deleteNote } from '../../actions/index'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
-import { Typo } from '../../styles/Typography'
 
 class AllNotes extends Component {
   constructor(props) {

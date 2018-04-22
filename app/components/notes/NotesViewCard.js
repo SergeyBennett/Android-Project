@@ -9,8 +9,6 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { Typo } from '../../styles/Typography'
-import { getColor } from '../../util/helpers'
 
 export default class NotesViewCard extends Component {
   render() {
@@ -27,12 +25,12 @@ export default class NotesViewCard extends Component {
       <TouchableOpacity onPress={this.handleGoto.bind(this)} onLongPress={this.handleLongPress.bind(this)}>
         <View style={[ styles.cardContainer, background ]}>
           <View style={styles.cardTitleContainer}>
-            <Text style={[ styles.cardTitle, Typo.cardTitle ]}>
+            <Text style={[ styles.cardTitle, {fontSize: 16} ]}>
               {title.toUpperCase()}
             </Text>
           </View>
           <View style={styles.cardDescriptionContainer}>
-            <Text style={[ styles.cardDescription, Typo.cardDescription ]}>
+            <Text style={[ styles.cardDescription, {fontSize: 16} ]}>
               {(description.length > 150)
               ? description.slice(0, 150) + '...'
               : description}

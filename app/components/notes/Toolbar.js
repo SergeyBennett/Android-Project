@@ -8,7 +8,6 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { Typo } from '../../styles/Typography'
 import { getColor } from '../../util/helpers'
 
 export default class Toolbar extends Component {
@@ -20,7 +19,7 @@ export default class Toolbar extends Component {
 
     return (
       <View style={[ styles.toolbar, { backgroundColor: getColor(color) } ]}>
-        <Text style={[ styles.title, Typo.toolbarTitle ]}>
+        <Text style={[ styles.title, {fontSize: 18} ]}>
           {title.toUpperCase()}
         </Text>
       </View>

@@ -14,7 +14,6 @@ import BackBtn from '../buttons/BackBtn'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
 import { addNote } from '../../actions/index'
-import { Typo } from '../../styles/Typography'
 
 
 class NewNote extends Component {

@@ -1,4 +1,11 @@
 export const styles = {
+  selection_menu:{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#ffffff',
+      fontSize: 22
+  },
   allNotesContainer: {
     flex: 1,
     backgroundColor: '#ffffff'
@@ -10,7 +17,6 @@ export const styles = {
     marginBottom: 56
   },
   emptyList: {
-    //fontFamily: 'Lato-Bold',
     fontSize: 16
   },
 
@@ -27,7 +33,6 @@ export const styles = {
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 0,
-    //fontFamily: 'Lato-Regular',
     fontSize: 20
   },
   inputDescriptionStyle: {
@@ -35,7 +40,6 @@ export const styles = {
     paddingLeft: 20,
     paddingRight: 20,
     marginBottom: 60,
-    //fontFamily: 'Lato-Regular',
     fontSize: 16,
     textAlignVertical: 'top'
   }

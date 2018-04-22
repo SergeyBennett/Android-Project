@@ -13,7 +13,6 @@ import BackBtn from '../buttons/BackBtn'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
 import { updateNote } from '../../actions/index'
-import { Typo } from '../../styles/Typography'
 
 class SingleNote extends Component {
   constructor(props) {

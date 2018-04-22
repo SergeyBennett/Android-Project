@@ -9,7 +9,6 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-import { Typo } from '../../styles/Typography'
 import { getColor } from '../../util/helpers'
 import Icon from '../../styles/Icon'
 
