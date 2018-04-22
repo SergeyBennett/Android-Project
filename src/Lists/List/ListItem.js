@@ -8,16 +8,25 @@ export default class ListItem extends React.Component {
         super(props);
     }
 
+    state = {
+        edit:false
+    }
+
+
     render() {
         let containerStyles = [styles.container];
         let priorityStyles = [styles.priorityContainer];
-        let titleStyles = [styles.title];
+        let titleStyles = [styles.titleValue];
         let rightSwipeButtons = [
             {backgroundColor: 'red', text: 'Remove', type: 'delete', onPress:this.props.remove}];
+        let title = null;
 
         if(this.props.isDone){
             titleStyles.push(styles.doneTitle);
             containerStyles.push(styles.doneContainer);
+            rightSwipeButtons.unshift({backgroundColor: '#f2f2f2',
+                color: 'black', text: 'Back', type: 'primary',onPress: this.props.toggleDone});
+
         }else{
             let p = null;
 
@@ -29,17 +38,27 @@ export default class ListItem extends React.Component {
             }
 
             priorityStyles.push(styles[p]);
-            rightSwipeButtons.push({backgroundColor: 'lightgreen', text: 'Done', type: 'primaty'})
+            rightSwipeButtons.push({backgroundColor: 'lightgreen', text: 'Done', type: 'primary', onPress: this.props.toggleDone});
+        }
+
+        if(!this.props.isDone && this.state.edit){
+            title = (<TextInput value={this.props.title}
+                               style={styles.titleValue}
+                               onChangeText={this.props.toggleTitle}/>);
+        }else{
+            title = (<Text style={[titleStyles]}>{this.props.title}</Text>);
         }
 
 
         return (
             <Swipeout right={rightSwipeButtons}
                       autoClose={true}
-                      backgroundColor= 'transparent'>
+                      backgroundColor='transparent'>
                 <View style={containerStyles}>
                     <View style={priorityStyles}/>
-                    <Text style={titleStyles}>{this.props.title}</Text>
+                    <View style={styles.title}>
+                        {title}
+                    </View>
                 </View>
             </Swipeout>
         );
@@ -50,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#FAFAFA',
         flexDirection: 'row',
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 1,
         borderBottomColor: '#DFE6E8',
         alignItems: 'center',
         justifyContent: 'flex-start'
@@ -70,8 +89,10 @@ const styles = StyleSheet.create({
     },
     title: {
         padding: 20,
-        fontSize: 22,
-        flexBasis: '70%'
+        flexBasis: '80%'
+    },
+    titleValue: {
+        fontSize: 22
     },
     priorityContainer: {
         flexBasis: 5,

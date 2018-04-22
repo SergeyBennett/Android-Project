@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import List from "./List/List";
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class Lists extends React.Component {
 
@@ -14,18 +15,9 @@ export default class Lists extends React.Component {
                 {id: 1, title: "Android project", priority: 1, done: false},
                 {id: 2, title: "Course work", priority: 1, done: true},
                 {id: 3, title: "Intelligent systems", priority: 2, done: true},
-                {id: 4, title: "E-publishing", priority: 2, done: false},
+                {id: 6, title: "Parallel programming", priority: 1, done: false},
+                {id: 4, title: "E-publishing", priority: 3, done: false},
                 {id: 5, title: "Have a rest",priority:4, done: false},
-                    {id: 6, title: "Android project", priority: 1, done: false},
-                    {id: 7, title: "Course work", priority: 1, done: false},
-                    {id: 8, title: "Intelligent systems", priority: 2, done: false},
-                    {id: 9, title: "E-publishing", priority: 3, done: false},
-                    {id: 10, title: "Have a rest", done: false},
-                    {id: 11, title: "Android project", priority: 1, done: false},
-                    {id: 12, title: "Course work", priority: 1, done: false},
-                    {id: 13, title: "Intelligent systems", priority: 2, done: false},
-                    {id: 14, title: "E-publishing", priority: 3, done: false},
-                    {id: 15, title: "Have a rest", priority:4, done: false}
             ]},
             {id:2, title: "Shopping", items: []},
         ],
@@ -107,25 +99,63 @@ export default class Lists extends React.Component {
 
     sorter = (a,b) => {
         if(a.done && b.done){
-
-            if(a.priority < b.priority) return 1;
-            else if(a.priority > b.priority) return -1;
-
             return 0;
         }
-        else if(a.done) return 1;
-        else return -1;
+        else
+            if(a.done)
+                return 1;
+        else
+            if(b.done)
+                return -1;
+        else{
+            if(a.priority > b.priority)
+                return 1;
+
+            if(a.priority < b.priority)
+                return -1;
+
+            }
+        return 0;
     }
 
+    onSwipeLeft = (s) => {
+        let nextId = null;
+        let currIndex = this.state.lists.findIndex( list => list.id === this.state.currentListId);
 
+        if(currIndex === 0){
+            nextId = this.state.lists[this.state.lists.length-1].id;
+        }else{
+            nextId = this.state.lists[currIndex-1].id;
+        }
+
+        this.setState({currentListId: nextId});
+    }
+
+    onSwipeRight = (s) => {
+        let nextId = null;
+        let currIndex = this.state.lists.findIndex( list => list.id === this.state.currentListId);
+
+        if(currIndex === this.state.lists.length-1){
+            nextId = this.state.lists[0].id;
+        }else{
+            nextId = this.state.lists[currIndex+1].id;
+        }
+
+        this.setState({currentListId: nextId});
+    }
 
     render() {
         const list = this.state.lists.find(x => x.id === this.state.currentListId);
 
         return (
             <View style={styles.container}>
-                <Text>Lists</Text>
-                <List title={list.title} content={list.items}
+                <GestureRecognizer style={styles.titleContainer}
+                                   onSwipeLeft={(state) => this.onSwipeLeft(state)}
+                                   onSwipeRight={(state) => this.onSwipeRight(state)}>
+                    <Text style={styles.title}>{list.title}</Text>
+                </GestureRecognizer>
+                <List
+                      content={list.items.sort(this.sorter)}
                       addItem={(item) => this.addItemToList(list.id, item)}
                       updateItem={(item) => this.updateItemInList(list.id, item)}
                       removeItem={(itemId) => this.removeItemFromListHandler(list.id, itemId)} />
@@ -139,4 +169,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1
     },
+    titleContainer:{
+        padding: 12,
+        alignItems: 'center',
+        backgroundColor: 'rgba(244, 244, 244,0.5)',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1
+    },
+    title:{
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: 'gray'
+    }
 });

@@ -10,30 +10,47 @@ export default class List extends React.Component {
         super(props);
     }
 
-    onSwipeDown = (state) => {
-        alert('swipe down')
+
+
+    toggleDone = (item) => {
+        let i = {...item};
+
+        i.done = !i.done;
+
+        this.props.updateItem(i);
+    }
+
+    toggleTitle = (title, item) => {
+        let i = {...item};
+
+        i.title = title;
+
+        this.props.updateItem(i);
     }
 
 
     render() {
 
+
         const items = this.props.content.map( item =>
              <ListItem  title={ item.title}
                         priority={item.priority}
                         isDone={item.done}
+                        toggleDone={() => this.toggleDone(item)}
+                        toggleTitle={(event) => this.toggleTitle(event, item)}
                         remove={() => this.props.removeItem(item.id)}
                         key={item.id}/>);
 
 
         return (
 
-            <ScrollView>{items}</ScrollView>
+                <ScrollView style={styles.container}>{items}</ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        bottom: 0
+        flex:1
     }
 });
