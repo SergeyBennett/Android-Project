@@ -3,9 +3,11 @@ import React, { Component } from "react";
 import {StatusBar, View, BackHandler} from "react-native";
 import {styles} from "../../styles/styles";
 import Toolbar from "../notes/Toolbar";
-import OpenNotesButton from "../buttons/OpenNotesButton"
+import OpenNotesButton from "../buttons/OpenNotesButton";
+import OpenListsButton from "../buttons/OpenListsButton"
 import AllNotes from "../notes/view_allNotes";
 import MainContainer from "../../containers/MainContainer"
+import Lists from "../../../src/Lists/Lists";
 
 export default class Selection_menu extends Component {
 
@@ -29,7 +31,7 @@ export default class Selection_menu extends Component {
         return (
             <MainContainer>
                 <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
-                <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
+                <OpenListsButton onBtnPress={this.openLists.bind(this)}></OpenListsButton>
             </MainContainer>
         )
     }
@@ -38,8 +40,8 @@ export default class Selection_menu extends Component {
         this.props.navigator.push({component: AllNotes, type: 'viewNotes'})
     }
 
-    // openLists() {
-    //     this.props.navigator.push({component: AllLists, type: 'viewLists'})
-    // }
+    openLists() {
+        this.props.navigator.push({component: Lists, type: 'viewLists'})
+    }
 
 }
