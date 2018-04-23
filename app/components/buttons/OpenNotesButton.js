@@ -13,7 +13,7 @@ export default class AddNoteButton extends Component {
     render() {
         return (
 
-            <View >
+            <View style={styles.selection_button}>
                 <TouchableOpacity onPress={this.handlePress.bind(this)}>
                     <Text>Press me! I am add notes button!</Text>
                 </TouchableOpacity>

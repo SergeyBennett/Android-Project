@@ -5,7 +5,7 @@ import {styles} from "../../styles/styles";
 import Toolbar from "../notes/Toolbar";
 import OpenNotesButton from "../buttons/OpenNotesButton"
 import AllNotes from "../notes/view_allNotes";
-
+import MainContainer from "../../containers/MainContainer"
 
 export default class Selection_menu extends Component {
 
@@ -27,19 +27,10 @@ export default class Selection_menu extends Component {
 
     render() {
         return (
-            <View style={[ styles.selection_menu, {
-                backgroundColor: 'white' } ]}
-                  barStyle="light-content"
-                  animated={true}>
-                <StatusBar
-                    backgroundColor={getColor('paperBlue700')}
-                    barStyle="light-content"
-                    animated={true}
-                />
-                <Toolbar title="Notes" color={getColor('paperBlue')}/>
-
+            <MainContainer>
                 <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
-            </View>
+                <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
+            </MainContainer>
         )
     }
 

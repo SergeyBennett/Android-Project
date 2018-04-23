@@ -13,7 +13,7 @@ export default class AddNoteButton extends Component {
     render() {
         return (
 
-            <View style={styles.container}>
+            <View style={styles.selection_button}>
                 <TouchableOpacity onPress={this.handlePress.bind(this)}>
                     <Icon name="add-circle" size={56} color={getColor('paperBlue')} />
                 </TouchableOpacity>
