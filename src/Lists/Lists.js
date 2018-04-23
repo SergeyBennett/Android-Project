@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import List from "./List/List";
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import MainContainer from "../../app/containers/MainContainer";
 
 export default class Lists extends React.Component {
 
@@ -159,6 +160,7 @@ export default class Lists extends React.Component {
         const list = this.state.lists.find(x => x.id === this.state.currentListId);
 
         return (
+            <MainContainer title = 'Lists'>
             <View style={styles.container}>
                 <GestureRecognizer style={styles.titleContainer}
                                    onSwipeLeft={(state) => this.onSwipeLeft(state)}
@@ -171,6 +173,7 @@ export default class Lists extends React.Component {
                       updateItem={(item) => this.updateItemInList(list.id, item)}
                       removeItem={(itemId) => this.removeItemFromListHandler(list.id, itemId)} />
             </View>
+            </MainContainer>
         );
     }
 }

@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StatusBar,
-  TextInput,
   Alert,
   BackHandler,
   ListView
@@ -18,32 +17,39 @@ import AddNoteButton from '../buttons/AddNoteButton'
 import { deleteNote } from '../../actions/index'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
+import addNavigationHelpers from "react-navigation/src/addNavigationHelpers";
 
 class AllNotes extends Component {
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props);
 
-    this._handleBackButton = this._handleBackButton.bind(this)
-  }
-
-  componentDidMount() {
-      BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
-  }
-
-  componentWillUnmount() {
-      BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton)
-  }
-
-  _handleBackButton() {
-    if (this.props.navigator.getCurrentRoutes().length == 1) {
-      return false
+        this._handleBackButton = this._handleBackButton.bind(this)
     }
-    return true
-  }
 
-  render() {
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton)
+    }
+
+    _handleBackButton() {
+        return this.props.navigator.getCurrentRoutes().length !== 1;
+
+    }
+
+
+    render() {
+        const {dispatch, nav} = this.props;
     return (
-      <View style={ styles.allNotesContainer }>
+      <View
+          navigation= {
+              addNavigationHelpers({
+                  dispatch,
+                  state: nav
+              })
+          } style={ styles.allNotesContainer } >
         <StatusBar
           backgroundColor={getColor('paperBlue700')}
           barStyle="light-content"
@@ -88,10 +94,10 @@ class AllNotes extends Component {
         </View>
       )
     } else {
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      var dataSource = ds.cloneWithRows(this.props.notes) || []
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let dataSource = ds.cloneWithRows(this.props.notes) || [];
 
-      return (
+        return (
         <ListView
           dataSource={dataSource}
           renderRow={(note, sectionID, rowID) => {

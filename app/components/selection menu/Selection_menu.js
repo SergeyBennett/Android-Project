@@ -29,7 +29,7 @@ export default class Selection_menu extends Component {
 
     render() {
         return (
-            <MainContainer>
+            <MainContainer title = 'Selection menu'>
                 <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
                 <OpenListsButton onBtnPress={this.openLists.bind(this)}></OpenListsButton>
             </MainContainer>
