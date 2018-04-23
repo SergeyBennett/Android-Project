@@ -102,8 +102,7 @@ export default class List extends React.Component {
 
 
         return (
-            <View>
-                {picker}
+            <View style={styles.container}>
                 <ScrollView style={styles.container}
                             refreshControl={
                                 <RefreshControl
@@ -114,6 +113,7 @@ export default class List extends React.Component {
                     {addItem}
                     {items}
                 </ScrollView>
+                {picker}
             </View>
         );
     }
@@ -125,7 +125,10 @@ const styles = StyleSheet.create({
     },
     picker: {
         position:'absolute',
-        alignItems: 'stretch',
-        justifyContent: 'flex-end'
+        top: '65%',
+        height: 150, width: '100%',
+        borderTopColor: '#ccc',
+        borderTopWidth: 0.7,
+        backgroundColor: 'rgba(255,255,255,0.7)'
     }
 });
