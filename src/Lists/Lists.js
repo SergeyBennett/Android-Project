@@ -18,6 +18,10 @@ export default class Lists extends React.Component {
                 {id: 6, title: "Parallel programming", priority: 1, done: false},
                 {id: 4, title: "E-publishing", priority: 3, done: false},
                 {id: 5, title: "Have a rest",priority:4, done: false},
+                    {id: 10, title: "Intelligent systems", priority: 2, done: true},
+                    {id: 7, title: "Parallel programming", priority: 1, done: false},
+                    {id: 8, title: "E-publishing", priority: 3, done: false},
+                    {id: 9, title: "Have a rest",priority:4, done: false},
             ]},
             {id:2, title: "Shopping", items: []},
         ],
@@ -108,11 +112,18 @@ export default class Lists extends React.Component {
             if(b.done)
                 return -1;
         else{
-            if(a.priority > b.priority)
-                return 1;
+            if(a.priority && b.priority){
+                if(a.priority > b.priority)
+                    return 1;
 
-            if(a.priority < b.priority)
-                return -1;
+                if(a.priority < b.priority)
+                    return -1;
+
+                return 0;
+            }
+            else if(a.priority) return 1;
+            else if(b.priority) return -1;
+
 
             }
         return 0;

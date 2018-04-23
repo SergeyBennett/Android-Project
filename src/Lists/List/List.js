@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView,RefreshControl,Picker } from 'react-native';
 import ListItem from "./ListItem";
 
 
 
 export default class List extends React.Component {
+
+    state = {
+        addItem: false,
+        editPriority:null
+    }
 
     constructor(props){
         super(props);
@@ -28,6 +33,36 @@ export default class List extends React.Component {
         this.props.updateItem(i);
     }
 
+    onEditPriority = (item) => {
+        this.setState({editPriority:item})
+    }
+
+    editPriority = (priority) => {
+        let i = {...this.state.editPriority};
+
+        i.priority = priority;
+
+        this.setState({editPriority:null})
+
+        this.props.updateItem(i);
+    }
+
+    onAdd = (name) => {
+        if(name){
+            let item  = {title:name}
+            item.done = false;
+            item.id = (new Date).getMilliseconds()%12384382;
+            this.props.addItem(item);
+        }
+
+        this.setState({addItem:false})
+    }
+
+    onSwipeDown = () => {
+
+            this.setState({addItem:true})
+
+    }
 
     render() {
 
@@ -38,19 +73,59 @@ export default class List extends React.Component {
                         isDone={item.done}
                         toggleDone={() => this.toggleDone(item)}
                         toggleTitle={(event) => this.toggleTitle(event, item)}
+                        editPriority={() => this.onEditPriority(item)}
                         remove={() => this.props.removeItem(item.id)}
                         key={item.id}/>);
+        let addItem = null;
+
+        if(this.state.addItem){
+            addItem = (<ListItem onAdd={(item)=> this.onAdd(item)} edit={true}/>);
+        }
+
+        let picker;
+
+        if(this.state.editPriority){
+            picker = (
+                <View style={styles.picker}>
+                    <Picker
+                        selectedValue={this.state.editPriority.priority}
+                        style={{height: 200, width: '100%'}}
+                        onValueChange={(itemValue) => this.editPriority(itemValue)}>
+                        <Picker.Item label="Red" value={1} />
+                        <Picker.Item label="Yellow" value={2} />
+                        <Picker.Item label="Green" value={3} />
+                        <Picker.Item label="Default" value={4} />
+                    </Picker>
+                </View>
+            );
+        }
 
 
         return (
-
-                <ScrollView style={styles.container}>{items}</ScrollView>
+            <View>
+                {picker}
+                <ScrollView style={styles.container}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={false}
+                                    colors={['blue']}
+                                    onRefresh={this.onSwipeDown.bind(this)}
+                                />}>
+                    {addItem}
+                    {items}
+                </ScrollView>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:1
+        flex:1,
+    },
+    picker: {
+        position:'absolute',
+        alignItems: 'stretch',
+        justifyContent: 'flex-end'
     }
 });
