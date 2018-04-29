@@ -15,7 +15,7 @@ export default class Toolbar extends Component {
     const {
       color,
       title
-    } = this.props
+    } = this.props;
 
     return (
       <View style={[ styles.toolbar, { backgroundColor: getColor(color) } ]}>
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     color: 'white'
   }
-})
+});

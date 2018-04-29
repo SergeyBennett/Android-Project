@@ -8,7 +8,6 @@ import {
   ListView
 } from 'react-native'
 import { connect } from 'react-redux'
-
 import NewNote from './view_newNote'
 import SingleNote from './view_singleNote'
 import Toolbar from './Toolbar'
@@ -17,9 +16,10 @@ import AddNoteButton from '../buttons/AddNoteButton'
 import { deleteNote } from '../../actions/index'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
-import addNavigationHelpers from "react-navigation/src/addNavigationHelpers";
+import { StackNavigator } from 'react-navigation';
+import navigation from "react-navigation/src/NavigationActions";
 
-class AllNotes extends Component {
+class All_Notes extends Component {
     constructor(props) {
         super(props);
 
@@ -39,17 +39,17 @@ class AllNotes extends Component {
 
     }
 
+    NotesNavigation = StackNavigator({
+        AllNotes: { screen: All_Notes },
+        NewNote: { screen: NewNote},
+        Note: {screen: SingleNote}
+    });
+
 
     render() {
-        const {dispatch, nav} = this.props;
+
     return (
-      <View
-          navigation= {
-              addNavigationHelpers({
-                  dispatch,
-                  state: nav
-              })
-          } style={ styles.allNotesContainer } >
+      <View  style={ styles.allNotesContainer } >
         <StatusBar
           backgroundColor={getColor('paperBlue700')}
           barStyle="light-content"
@@ -58,17 +58,19 @@ class AllNotes extends Component {
         <Toolbar title="Notes" color={getColor('paperBlue')}/>
         { this.renderList() }
 
-        <AddNoteButton onBtnPress={this.addNewNote.bind(this)}/>
+        <AddNoteButton onBtnPress={All_Notes.addNewNote.bind(this)}/>
       </View>
     )
   }
 
-  addNewNote() {
-    this.props.navigator.push({component: NewNote, type: 'addingNote'})
+  static addNewNote() {
+    //this.props.navigator.push({component: NewNote, type: 'addingNote'})
+      navigation.navigate('NewNote',{type: 'addingNote'})
   }
 
-  goToNote(noteId, title, description) {
-    this.props.navigator.push({ component: SingleNote, type: 'editingNote', passProps: { noteId, title, description } })
+  static goToNote(noteId, title, description) {
+      //this.props.navigator.push({ component: SingleNote, type: 'editingNote', passProps: { noteId, title, description } })
+      navigation.navigate('Note', {type: 'editingNote', passProps: {noteId, title, description}})
   }
 
   longPressNote(noteId) {
@@ -107,7 +109,7 @@ class AllNotes extends Component {
                 description={note.description}
                 id={note.id}
                 keys={rowID}
-                onPressBtn={this.goToNote.bind(this)}
+                onPressBtn={All_Notes.goToNote.bind(this)}
                 onLongPressBtn={this.longPressNote.bind(this)}
               />
             )
@@ -122,4 +124,4 @@ function mapStateToProps(state) {
   return { notes: state.allNotes }
 }
 
-export default connect(mapStateToProps, { deleteNote })(AllNotes)
+export default connect(mapStateToProps, { deleteNote })(All_Notes)

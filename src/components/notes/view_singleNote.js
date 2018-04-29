@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import Toolbar from './Toolbar'
-import TickBtn from '../buttons/TickBtn'
+import TickButton from '../buttons/TickButton'
 import BackButton from '../buttons/BackButton'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
@@ -81,7 +81,7 @@ class SingleNote extends Component {
         </View>
 
         <View style={styles.inputScreenBtnContainer}>
-          <TickBtn onBtnPress={this.updateNote.bind(this)} />
+          <TickButton onBtnPress={this.updateNote.bind(this)} />
           <BackButton onBtnPress={this.goBack.bind(this)} />
         </View>
 
@@ -90,7 +90,7 @@ class SingleNote extends Component {
   }
 
   goBack(event) {
-    this.props.navigator.pop()
+    this.props.navigator.goBack();
   }
 
   updateNote() {

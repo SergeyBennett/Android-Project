@@ -1,11 +1,8 @@
-import {getColor} from "../../util/helpers";
 import React, { Component } from "react";
-import {StatusBar, View, BackHandler} from "react-native";
-import {styles} from "../../styles/styles";
-import Toolbar from "../notes/Toolbar";
+import {BackHandler} from "react-native";
 import OpenNotesButton from "../buttons/OpenNotesButton";
 import OpenListsButton from "../buttons/OpenListsButton"
-import AllNotes from "../notes/view_allNotes";
+import AllNotes from "../notes/All_Notes";
 import MainContainer from "../../containers/MainContainer"
 import Lists from "../../Lists/Lists";
 
@@ -20,20 +17,16 @@ export default class Selection_menu extends Component {
     }
 
     _handleBackButton() {
-        if (this.props.navigator.getCurrentRoutes().length == 1) {
-            return false
-        }
-        return true
+        return this.props.navigator.getCurrentRoutes().length != 1;
+
     }
 
 
     render() {
-        return (
-            <MainContainer title = 'Selection menu'>
-                <OpenNotesButton onBtnPress={this.openNotes.bind(this)}></OpenNotesButton>
-                <OpenListsButton onBtnPress={this.openLists.bind(this)}></OpenListsButton>
-            </MainContainer>
-        )
+        return <MainContainer title='Selection menu'>
+            <OpenNotesButton onBtnPress={this.openNotes.bind(this)}/>
+            <OpenListsButton onBtnPress={this.openLists.bind(this)}/>
+        </MainContainer>
     }
 
     openNotes() {

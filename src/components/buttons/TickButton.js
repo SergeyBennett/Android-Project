@@ -11,7 +11,7 @@ import {
 import { getColor } from '../../util/helpers'
 import Icon from '../../styles/Icon'
 
-export default class TickBtn extends Component {
+export default class TickButton extends Component {
   render() {
     return (
 

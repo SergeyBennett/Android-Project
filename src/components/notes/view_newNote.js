@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Text,
   View,
   TextInput,
   BackHandler,
@@ -9,7 +8,7 @@ import {
 import { connect } from 'react-redux'
 
 import Toolbar from './Toolbar'
-import TickBtn from '../buttons/TickBtn'
+import TickButton from '../buttons/TickButton'
 import BackButton from '../buttons/BackButton'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
@@ -20,7 +19,7 @@ class NewNote extends Component {
   constructor(props) {
     super(props);
 
-    this._handleBackButton = this._handleBackButton.bind(this)
+    this._handleBackButton = this._handleBackButton.bind(this);
 
     this.state = {
       title: '',
@@ -37,7 +36,7 @@ class NewNote extends Component {
   }
 
   _handleBackButton() {
-    if (this.state.title == '') {
+    if (this.state.title === '') {
       this.goBack()
     } else {
       this.addNote()
@@ -67,7 +66,7 @@ class NewNote extends Component {
             selectionColor={getColor('paperTeal')}
             onChangeText={(text) => this.setState({ title: text })}
             value={this.state.title}
-          />
+          ></TextInput>
 
           <TextInput
             style={styles.inputDescriptionStyle}
@@ -82,8 +81,8 @@ class NewNote extends Component {
           />
         </View>
 
-        <View style={styles.inputScreenBtnContainer}>
-          <TickBtn onBtnPress={this.addNote.bind(this)} />
+        <View>
+          <TickButton onBtnPress={this.addNote.bind(this)} />
           <BackButton onBtnPress={this.goBack.bind(this)} />
         </View>
 
@@ -91,15 +90,15 @@ class NewNote extends Component {
     )
   }
 
-  goBack(event) {
-    this.props.navigator.pop()
+  goBack() {
+    this.props.navigator.goBack();
   }
 
   addNote() {
     this.props.addNote({
       title: this.state.title,
       description: this.state.desc
-    })
+    });
     this.goBack()
   }
 }

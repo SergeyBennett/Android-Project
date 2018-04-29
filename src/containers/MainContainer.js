@@ -1,6 +1,6 @@
 import {Component} from "react";
 import React from "react";
-import {View, BackHandler} from "react-native";
+import {View} from "react-native";
 import {getColor} from "../util/helpers";
 import {styles} from "../styles/styles";
 import Toolbar from "../components/notes/Toolbar";
