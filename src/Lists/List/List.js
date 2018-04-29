@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
         height: '40%', width: '100%',
         borderTopColor: '#ccc',
         borderTopWidth: 0.7,
-        backgroundColor: 'rgba(255,255,255,0.7)'
+        backgroundColor: 'rgba(255,255,255,0.9)'
     }
 });

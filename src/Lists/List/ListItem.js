@@ -81,12 +81,14 @@ export default class ListItem extends React.Component {
         if(!this.props.isDone && this.state.edit){
             title = (<TextInput value={this.props.title}
                                style={styles.titleValue} autoFocus={true}
+                                underlineColorAndroid='transparent'
                                onChangeText={(text)  => this.title = text}
                                 onEndEditing={this.afterEdit}/>);
 
         }else if (this.props.edit){
 
             title = (<TextInput style={styles.titleValue} autoFocus={true} placeholder="New Task"
+                                underlineColorAndroid='transparent'
                                 onChangeText={(text)  => this.title = text}
                                 onEndEditing={this.afterAdd}/>);
 
