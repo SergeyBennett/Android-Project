@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux'
 import Toolbar from './Toolbar'
 import TickBtn from '../buttons/TickBtn'
-import BackBtn from '../buttons/BackBtn'
+import BackButton from '../buttons/BackButton'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
 import { updateNote } from '../../actions/index'
@@ -82,7 +82,7 @@ class SingleNote extends Component {
 
         <View style={styles.inputScreenBtnContainer}>
           <TickBtn onBtnPress={this.updateNote.bind(this)} />
-          <BackBtn onBtnPress={this.goBack.bind(this)} />
+          <BackButton onBtnPress={this.goBack.bind(this)} />
         </View>
 
       </View>

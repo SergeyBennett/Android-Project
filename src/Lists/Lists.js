@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import List from "./List/List";
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import MainContainer from "../../app/containers/MainContainer";
+import MainContainer from "../containers/MainContainer";
 
 export default class Lists extends React.Component {
 

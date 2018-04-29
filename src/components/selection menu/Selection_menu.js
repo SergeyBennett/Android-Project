@@ -7,7 +7,7 @@ import OpenNotesButton from "../buttons/OpenNotesButton";
 import OpenListsButton from "../buttons/OpenListsButton"
 import AllNotes from "../notes/view_allNotes";
 import MainContainer from "../../containers/MainContainer"
-import Lists from "../../../src/Lists/Lists";
+import Lists from "../../Lists/Lists";
 
 export default class Selection_menu extends Component {
 
