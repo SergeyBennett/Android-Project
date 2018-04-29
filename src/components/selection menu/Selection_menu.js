@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {BackHandler} from "react-native";
+import {BackHandler,StyleSheet} from "react-native";
 import OpenNotesButton from "../buttons/OpenNotesButton";
 import OpenListsButton from "../buttons/OpenListsButton"
 import AllNotes from "../notes/All_Notes";
@@ -23,10 +23,10 @@ export default class Selection_menu extends Component {
 
 
     render() {
-        return <MainContainer title='Selection menu'>
-            <OpenNotesButton onBtnPress={this.openNotes.bind(this)}/>
-            <OpenListsButton onBtnPress={this.openLists.bind(this)}/>
-        </MainContainer>
+        return (<MainContainer title='Selection menu' style={styles.container}>
+                    <OpenNotesButton onBtnPress={this.openNotes.bind(this)}/>
+                    <OpenListsButton onBtnPress={this.openLists.bind(this)}/>
+                </MainContainer>);
     }
 
     openNotes() {
@@ -38,3 +38,12 @@ export default class Selection_menu extends Component {
     }
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+    }
+})

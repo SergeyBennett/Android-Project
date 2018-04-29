@@ -1,3 +1,5 @@
+import {getColor} from "../util/helpers";
+
 export const styles = {
         main_positioning :{
             flex:1,
@@ -14,14 +16,23 @@ export const styles = {
       },
         selection_button:{
             alignItems:'center',
-            fontSize:'22',
-            height: '50'
+            padding: 12,
+            margin: 15,
+            backgroundColor:getColor('paperBlue'),
+            borderColor: getColor('paperBlue'),
+            borderWidth: 1,
+            borderStyle: 'solid'
         },
+    selection_button_text:{
+            fontSize: 22,
+            color: 'white',
+            fontWeight: 'bold'
+    },
       selection_menu:{
           flex: 1,
           flexDirection: 'column',
           alignItems: 'stretch',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           backgroundColor: '#ffffff'
       },
       allNotesContainer: {
