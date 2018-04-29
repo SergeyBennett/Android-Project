@@ -3,13 +3,11 @@ import {
   Text,
   View,
   StatusBar,
-  TextInput,
   Alert,
   BackHandler,
   ListView
 } from 'react-native'
 import { connect } from 'react-redux'
-
 import NewNote from './view_newNote'
 import SingleNote from './view_singleNote'
 import Toolbar from './Toolbar'
@@ -18,32 +16,40 @@ import AddNoteButton from '../buttons/AddNoteButton'
 import { deleteNote } from '../../actions/index'
 import { styles } from '../../styles/styles'
 import { getColor } from '../../util/helpers'
+import { StackNavigator } from 'react-navigation';
+import navigation from "react-navigation/src/NavigationActions";
 
-class AllNotes extends Component {
-  constructor(props) {
-    super(props)
+class All_Notes extends Component {
+    constructor(props) {
+        super(props);
 
-    this._handleBackButton = this._handleBackButton.bind(this)
-  }
-
-  componentDidMount() {
-      BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
-  }
-
-  componentWillUnmount() {
-      BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton)
-  }
-
-  _handleBackButton() {
-    if (this.props.navigator.getCurrentRoutes().length == 1) {
-      return false
+        this._handleBackButton = this._handleBackButton.bind(this)
     }
-    return true
-  }
 
-  render() {
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this._handleBackButton)
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton)
+    }
+
+    _handleBackButton() {
+        return this.props.navigator.getCurrentRoutes().length !== 1;
+
+    }
+
+    NotesNavigation = StackNavigator({
+        AllNotes: { screen: All_Notes },
+        NewNote: { screen: NewNote},
+        Note: {screen: SingleNote}
+    });
+
+
+    render() {
+
     return (
-      <View style={ styles.allNotesContainer }>
+      <View  style={ styles.allNotesContainer } >
         <StatusBar
           backgroundColor={getColor('paperBlue700')}
           barStyle="light-content"
@@ -52,17 +58,19 @@ class AllNotes extends Component {
         <Toolbar title="Notes" color={getColor('paperBlue')}/>
         { this.renderList() }
 
-        <AddNoteButton onBtnPress={this.addNewNote.bind(this)}/>
+        <AddNoteButton onBtnPress={All_Notes.addNewNote.bind(this)}/>
       </View>
     )
   }
 
-  addNewNote() {
-    this.props.navigator.push({component: NewNote, type: 'addingNote'})
+  static addNewNote() {
+    //this.props.navigator.push({component: NewNote, type: 'addingNote'})
+      navigation.navigate('NewNote',{type: 'addingNote'})
   }
 
-  goToNote(noteId, title, description) {
-    this.props.navigator.push({ component: SingleNote, type: 'editingNote', passProps: { noteId, title, description } })
+  static goToNote(noteId, title, description) {
+      //this.props.navigator.push({ component: SingleNote, type: 'editingNote', passProps: { noteId, title, description } })
+      navigation.navigate('Note', {type: 'editingNote', passProps: {noteId, title, description}})
   }
 
   longPressNote(noteId) {
@@ -88,10 +96,10 @@ class AllNotes extends Component {
         </View>
       )
     } else {
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      var dataSource = ds.cloneWithRows(this.props.notes) || []
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let dataSource = ds.cloneWithRows(this.props.notes) || [];
 
-      return (
+        return (
         <ListView
           dataSource={dataSource}
           renderRow={(note, sectionID, rowID) => {
@@ -101,7 +109,7 @@ class AllNotes extends Component {
                 description={note.description}
                 id={note.id}
                 keys={rowID}
-                onPressBtn={this.goToNote.bind(this)}
+                onPressBtn={All_Notes.goToNote.bind(this)}
                 onLongPressBtn={this.longPressNote.bind(this)}
               />
             )
@@ -116,4 +124,4 @@ function mapStateToProps(state) {
   return { notes: state.allNotes }
 }
 
-export default connect(mapStateToProps, { deleteNote })(AllNotes)
+export default connect(mapStateToProps, { deleteNote })(All_Notes)

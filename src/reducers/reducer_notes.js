@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { ADD_NOTES, UPDATE_NOTE, DELETE_NOTE } from '../actions'
 
 const initialState = [

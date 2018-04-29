@@ -1,7 +1,9 @@
+//
+// Add New Note Button
+//
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity
 } from 'react-native'
@@ -9,13 +11,13 @@ import {
 import { getColor } from '../../util/helpers'
 import Icon from '../../styles/Icon'
 
-export default class BackBtn extends Component {
+export default class TickButton extends Component {
   render() {
     return (
 
         <View style={styles.container}>
           <TouchableOpacity onPress={this.handlePress.bind(this)}>
-            <Icon name="close" size={36} color={getColor('#ffffff')} />
+            <Icon name="done" size={36} color={getColor('#ffffff')} />
           </TouchableOpacity>
         </View>
     )
@@ -31,8 +33,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     padding: 5,
     bottom: 15,
-    left: 15,
-    backgroundColor: getColor('paperPink'),
+    right: 15,
+    backgroundColor: getColor('paperTeal'),
     borderRadius: 50
   }
 })

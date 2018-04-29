@@ -10,14 +10,17 @@ import {
 import NavigationExperimental from 'react-native-deprecated-custom-components';
 import { StackNavigator } from 'react-navigation';
 
-import AllNotes from './app/components/notes/view_allNotes'
+//import AllNotes from './src/components/notes/view_allNotes'
 
 
-import ApplicationStore from './app/reducers'
+import ApplicationStore from './src/reducers'
 const reducer = storage.reducer(ApplicationStore);
 
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage'
-import Selection_menu from "./app/components/selection menu/Selection_menu";
+import Selection_menu from "./src/components/selection menu/Selection_menu";
+import Lists from "./src/Lists/Lists"
+import All_Notes from "./src/components/notes/All_Notes";
+
 const engine = createEngine('notes-app-store')
 
 const middleware = storage.createMiddleware(engine)
@@ -30,6 +33,12 @@ load(store)
 const routes = [
     { component: Selection_menu }
 ]
+
+const AppNavigation = StackNavigator({
+    SelectionMenu: { screen: Selection_menu },
+    AllNotes: { screen: All_Notes },
+    Lists: {screen: Lists}
+});
 
 export default class App extends Component {
     componentDidMount() {

@@ -1,3 +1,6 @@
+//
+// Add New Note Button
+//
 import React, { Component } from 'react'
 import {
     View,
@@ -6,16 +9,13 @@ import {
     TouchableOpacity
 } from 'react-native'
 
-import { getColor } from '../../util/helpers'
-import Icon from '../../styles/Icon'
-
 export default class AddNoteButton extends Component {
     render() {
         return (
 
             <View style={styles.selection_button}>
                 <TouchableOpacity onPress={this.handlePress.bind(this)}>
-                    <Icon name="add-circle" size={56} color={getColor('paperBlue')} />
+                    <Text>Press me! I am add lists button!</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -28,10 +28,7 @@ export default class AddNoteButton extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        bottom: 15,
-        right: 15,
-        backgroundColor: 'white',
-        borderRadius: 50
+        backgroundColor: 'white'
+        //,borderColor: 'gray'
     }
 })

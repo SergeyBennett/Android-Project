@@ -15,11 +15,10 @@ export default class NotesViewCard extends Component {
     const {
       title,
       description,
-      id,
       keys
-    } = this.props
+    } = this.props;
 
-    const background = (keys % 2 == 0) ? { backgroundColor: '#ffffff' } : { backgroundColor: '#f2f2f2'}
+    const background = (keys % 2 === 0) ? { backgroundColor: '#ffffff' } : { backgroundColor: '#f2f2f2'}
 
     return (
       <TouchableOpacity onPress={this.handleGoto.bind(this)} onLongPress={this.handleLongPress.bind(this)}>
@@ -69,4 +68,4 @@ const styles = StyleSheet.create({
   cardDescription: {
 
   }
-})
+});

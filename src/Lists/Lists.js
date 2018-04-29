@@ -4,6 +4,8 @@ import List from "./List/List";
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import { connect } from 'react-redux';
 import {actionCreators} from '../../app/actions/list'
+import MainContainer from "../containers/MainContainer";
+
 
 class Lists extends React.Component {
 
@@ -57,6 +59,7 @@ class Lists extends React.Component {
         const list = this.props.list;
 
         return (
+            <MainContainer title = 'Lists'>
             <View style={styles.container}>
                 <GestureRecognizer style={styles.titleContainer}
                                    onSwipeLeft={this.onSwipeLeft}
@@ -69,6 +72,7 @@ class Lists extends React.Component {
                       updateItem={(item) => this.updateItemInList(item)}
                       removeItem={(itemId) => this.removeItemFromListHandler(itemId)} />
             </View>
+            </MainContainer>
         );
     }
 }
