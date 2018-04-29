@@ -8,14 +8,14 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native'
-
+import {styles} from '../../styles/styles'
 export default class AddNoteButton extends Component {
     render() {
         return (
 
-            <View style={styles.selection_button}>
-                <TouchableOpacity onPress={this.handlePress.bind(this)}>
-                    <Text>Press me! I am add lists button!</Text>
+            <View>
+                <TouchableOpacity onPress={this.handlePress.bind(this)} style={styles.selection_button}>
+                    <Text style={styles.selection_button_text}>Lists</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -26,9 +26,8 @@ export default class AddNoteButton extends Component {
     }
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
     container: {
-        backgroundColor: 'white'
-        //,borderColor: 'gray'
+        flex:1
     }
 })

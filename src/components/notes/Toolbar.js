@@ -19,7 +19,7 @@ export default class Toolbar extends Component {
 
     return (
       <View style={[ styles.toolbar, { backgroundColor: getColor(color) } ]}>
-        <Text style={[ styles.title, {fontSize: 18} ]}>
+        <Text style={[ styles.title, {fontSize: 22} ]}>
           {title.toUpperCase()}
         </Text>
       </View>
@@ -29,11 +29,12 @@ export default class Toolbar extends Component {
 
 const styles = StyleSheet.create({
   toolbar: {
-    height: 56,
-    justifyContent: 'center'
+    height: 64,
+    justifyContent: 'flex-end',
+      paddingBottom: 10
   },
   title: {
-    marginLeft: 16,
+    marginLeft: 14,
     color: 'white'
   }
 });
