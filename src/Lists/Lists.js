@@ -84,10 +84,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     titleContainer:{
-        padding: 12,
+        padding: 8,
         alignItems: 'center',
         backgroundColor: 'rgba(244, 244, 244,0.5)',
-        // backgroundColor: getColor('paperBlue'),
         borderBottomColor: getColor('paperBlue'),
         borderBottomWidth: 2,
 
