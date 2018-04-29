@@ -88,13 +88,13 @@ export default class ListItem extends React.Component {
 
         }else if (this.props.edit){
 
-            title = (<TextInput style={styles.titleValue} autoFocus={true} placeholder="New Task"
+            title = (<TextInput style={[styles.titleValue,{color: 'grey'}]} autoFocus={true} placeholder="New Task"
                                 underlineColorAndroid='transparent'
                                 onChangeText={(text)  => this.title = text}
                                 onEndEditing={this.afterAdd}/>);
 
         }else{
-            title = (<Text style={[titleStyles]}>{this.props.title}</Text>);
+            title = (<Text style={[titleStyles,{color: 'grey'}]}>{this.props.title}</Text>);
         }
 
 
@@ -108,8 +108,8 @@ export default class ListItem extends React.Component {
                     <View style={containerStyles}>
                         <View style={priorityStyles}/>
                         <TouchableWithoutFeedback onPress={this.onEdit}>
-                            <View>
-                                <Text style={styles.title}>{title}</Text>
+                            <View style={styles.title}>
+                                {title}
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -143,8 +143,7 @@ const styles = StyleSheet.create({
     },
     title: {
         padding: 20,
-        flexBasis: '80%',
-        color: 'grey'
+        flexBasis: '80%'
     },
     titleValue: {
         fontSize: 22
