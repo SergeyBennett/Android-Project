@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button ,TouchableWithoutFeedback,Picker} from 'react-native';
 import Swipeout from 'react-native-swipeout';
+import {getColor} from "../../util/helpers";
 
 export default class ListItem extends React.Component {
 
@@ -46,7 +47,7 @@ export default class ListItem extends React.Component {
         let priorityStyles = [styles.priority];
         let titleStyles = [styles.titleValue];
         let rightSwipeButtons = [
-            {backgroundColor: 'red', text: 'Remove', type: 'delete', onPress:this.props.remove}];
+            {backgroundColor: getColor('paperRed'), text: 'Remove', type: 'delete', onPress:this.props.remove}];
         let leftSwipeButtons = [];
         let title = null;
 
@@ -74,7 +75,7 @@ export default class ListItem extends React.Component {
             }
 
             priorityStyles.push(styles[p]);
-            rightSwipeButtons.push({backgroundColor: 'lightgreen', text: 'Done', type: 'primary', onPress: this.props.toggleDone});
+            rightSwipeButtons.push({backgroundColor: getColor('paperGreen'), text: 'Done', type: 'primary', onPress: this.props.toggleDone});
             leftSwipeButtons.push({backgroundColor:p,text:'', onPress: this.onPriorityEdit})
         }
 
@@ -107,8 +108,8 @@ export default class ListItem extends React.Component {
                     <View style={containerStyles}>
                         <View style={priorityStyles}/>
                         <TouchableWithoutFeedback onPress={this.onEdit}>
-                            <View style={styles.title}>
-                                {title}
+                            <View>
+                                <Text style={styles.title}>{title}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -129,20 +130,21 @@ const styles = StyleSheet.create({
     },
 
     red:{
-        backgroundColor: 'red'
+        backgroundColor: getColor('paperRed')
     },
     yellow:{
-        backgroundColor: 'yellow'
+        backgroundColor: getColor('paperYellow')
     },
     green:{
-        backgroundColor: 'green'
+        backgroundColor: getColor('paperGreen')
     },
     transparent:{
         backgroundColor: 'transparent'
     },
     title: {
         padding: 20,
-        flexBasis: '80%'
+        flexBasis: '80%',
+        color: 'grey'
     },
     titleValue: {
         fontSize: 22

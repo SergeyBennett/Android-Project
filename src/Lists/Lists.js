@@ -5,6 +5,7 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import { connect } from 'react-redux';
 import {actionCreators} from '../actions/list'
 import MainContainer from "../containers/MainContainer";
+import {getColor} from "../util/helpers";
 
 
 class Lists extends React.Component {
@@ -86,13 +87,16 @@ const styles = StyleSheet.create({
         padding: 12,
         alignItems: 'center',
         backgroundColor: 'rgba(244, 244, 244,0.5)',
-        borderBottomColor: '#ccc',
-        borderBottomWidth: 1
+        // backgroundColor: getColor('paperBlue'),
+        borderBottomColor: getColor('paperBlue'),
+        borderBottomWidth: 2,
+
     },
     title:{
         fontSize: 25,
-        fontWeight: 'bold',
-        color: 'gray'
+        // fontWeight: 'bold',
+        // color: 'gray'
+        color: getColor('paperBlue')
     }
 });
 
